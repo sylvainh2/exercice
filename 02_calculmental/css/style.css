@@ -1,0 +1,13 @@
+body{
+    font-family:'Space Mono', monospace;
+    text-align: center;
+    background: linear-gradient(to right, rgba(183,226,253,1) 0%, rgba(21,165,239,1) 100%);
+}
+p{
+    /* text-align: center; */
+    font-size: large;
+}
+.myCanvas{
+    background-color: white;
+    box-shadow: 2px 2px 5px grey;
+}
