@@ -326,12 +326,12 @@ function falseRandomPos(data) {
     for(let i=0;i<6;i++){
         let depx=Math.floor(Math.random()*80);
         let depy=Math.floor(Math.random()*60);
-        if(depx>=60){
+        if(depx>=40){
             depx=-depx/2;
         } else {
             depx=depx/2;
         }
-        if(depy<40){
+        if(depy<30){
             depy=-depy/2;
         } else {
             depy=depy/2;
