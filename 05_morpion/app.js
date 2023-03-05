@@ -26,7 +26,7 @@ function play(event){
         compt+=1;
         if(player=="X"){
             xcomb.push(played);
-            document.querySelector(".c"+played).textContent="X";
+            document.querySelector(".s"+played).textContent="X";
             document.querySelector(".player").textContent="Le joueur O doit jouer";
             if(xcomb.length>=3){
                 compt=compare(xcomb,player);
@@ -34,7 +34,7 @@ function play(event){
             player="O";
         }else{
             ycomb.push(played);
-            document.querySelector(".c"+played).textContent="O";
+            document.querySelector(".s"+played).textContent="O";
             document.querySelector(".player").textContent="Le joueur X doit jouer";
             if(ycomb.length>=3){
                 compt=compare(ycomb,player);
