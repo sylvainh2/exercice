@@ -1,15 +1,13 @@
-.root{
-    --rati:10;
-}
+
 body{
-    background-color: rgb(212, 208, 208);
+    background-color:rgb(212, 208, 208);
     text-align: center;
 }
 h1{
     font-weight: 100;
     display:inline-block;
     margin:1rem auto;
-    background-color: rgb(141, 206, 247);
+    background-color:rgb(141, 206, 247); 
     padding:0.5rem;
     border:3px solid white;
     border-radius: 15px;
@@ -30,18 +28,14 @@ section{
     margin-top: 1rem;
 }
 .datas{
-    color:white;
+    color:var(--blanc);
     margin-top:-1rem;
 }
 .ratio{
     text-align: center;
-    background-color: rgb(109, 210, 249);
+    background-color:rgb(109, 210, 249);
     border:1px solid rgb(197, 196, 196);
 }
 .prog{
     margin:-1rem 0 1rem;
 }
-/* @keyframes barre{
-    from {width:0;}
-    to {width:250px;}
-} */
