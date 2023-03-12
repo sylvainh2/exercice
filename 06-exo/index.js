@@ -72,13 +72,13 @@ async function fetchFunct(){
             }
         }
     }
-    itv=setInterval(prog,300);
+    itv=setInterval(prog,200);
     w=0;
     let names = document.querySelectorAll('.title');
     let numbers = document.querySelectorAll('.datas');
     ratios = document.querySelectorAll('.ratio');
     for(let i=0;i<poolDatas.length;i++){
-        names[i].textContent=poolDatas[i].fields.etablissement_etalib;
+        names[i].textContent=poolDatas[i].fields.etablissement_etalib+" - "+poolDatas[i].fields.fmizonlib;
         if(poolDatas[i].fields.fmicourante<0){
             numbers[i].textContent="nombre de personne: 0/"+poolDatas[i].fields.fmizonmax;
             ratios[i].value=0;
@@ -99,5 +99,5 @@ function prog(){
             clearInterval(itv);
         }
     }
-    w+=1;
+    w+=0.5;
 }

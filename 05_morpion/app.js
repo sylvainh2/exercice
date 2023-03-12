@@ -16,6 +16,9 @@ let arr=[];
 let res1,res2,res3=false;
 let player="X";
 document.querySelectorAll('.square').forEach((data)=>data.addEventListener("click",play));
+//******************************************************************************************************************/
+//                                      fonction de la gestion des joueurs                                          /
+//******************************************************************************************************************/
 
 function play(event){
     let e=event.target;
@@ -47,6 +50,9 @@ function play(event){
     }
 
 };
+//********************************************************************************************************************/
+//                                       Affichage du resultat de la partie                                           /
+//********************************************************************************************************************/
 function result(data){
     if(data==""){
         document.querySelector(".player").textContent="Egalité!! F5 pour redémarrer une partie";
@@ -54,6 +60,9 @@ function result(data){
         document.querySelector(".player").textContent="Le joueur "+data+" a gagné!! F5 pour redémarrer une partie";
     }
 }
+//*******************************************************************************************************************/
+//                                fonction de comparaison avec les solutions gagnantes                               /
+//*******************************************************************************************************************/
 function compare(data,player){
     let res=false;
     for(let i=0;i<8;i++){

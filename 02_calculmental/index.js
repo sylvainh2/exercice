@@ -92,22 +92,27 @@ function init() {
         libelley:100
         },  
     ];
+    //creation des diverses formes
     shapeDescriptionArray.map((data)=>{
         containerFunct(data);
     })
+    //positionnement des boules(ici faux positionnement aléatoire)
     falseRandomPos(containerArray);    
-        
-        reset()
-        createjs.Ticker.timingMode = createjs.Ticker.RAF;
-        createjs.Ticker.addEventListener("tick",()=>{
-            if(anim){
-                animSolu();
-            }
-            stage.update();
-        })
+    //remise à zero des variables et réassignement des valeurs    
+    reset()
+    //creation du timer qui servira pour l'animation
+    createjs.Ticker.timingMode = createjs.Ticker.RAF;
+    createjs.Ticker.addEventListener("tick",()=>{
+        if(anim){
+            animSolu();
+        }
+        stage.update();
+    })
 
 }
-
+//*****************************************************************************************************************/
+//                      recalcul des solutions des boules et solutions et de leur affichage                        /
+//*****************************************************************************************************************/
 function reset(){
     calculBoule();
     calculSolutions();
@@ -116,7 +121,9 @@ function reset(){
     boulesDisplay(containerArray);
     rectResultDisplay();
 }
-
+//*****************************************************************************************************************/
+//                                         création des diverses formes                                            /
+//*****************************************************************************************************************/
 function formDraw(data){
     let formObj = new createjs.Shape();
     formObj.mouve = false;
@@ -139,7 +146,9 @@ function formDraw(data){
         return (formObj);
     
 }
-
+//*****************************************************************************************************************/
+//                                  compare si l'on a cliqué sur le bon résultat                                   /
+//*****************************************************************************************************************/
 function handleClick(event) {
     let e=event.currentTarget;
     console.log('clic:',e.montext.text);
@@ -159,6 +168,9 @@ function handleClick(event) {
     }
     // event.currentTarget.mouve = !event.currentTarget.mouve;
 }
+//*****************************************************************************************************************/
+//          fonction qui replace les formes à leur place originelle et autorise les clics sur les solutions        /
+//*****************************************************************************************************************/
 function handleClickResult(event) {
     contResult.visible=false;
     let i=0;
@@ -173,7 +185,7 @@ function handleClickResult(event) {
     }
     reset();
 }
-
+//fonction d'animation linéaire des objets qui ne sert plus.
 function animate(){
     animArray.map((data)=>{
         if(data.mouve){
@@ -183,7 +195,9 @@ function animate(){
         }
     })
 }
-
+//*****************************************************************************************************************/
+//              création des containers des boules et des rectangles avec les écouteurs d'évenements               /
+//*****************************************************************************************************************/
 function containerFunct(data){
     let container = new createjs.Container();
 
@@ -206,7 +220,9 @@ function containerFunct(data){
 
     return(container);
 }
-
+//****************************************************************************************************************/
+//                                      calcul des nombres dans les boules                                        /
+//****************************************************************************************************************/
 function calculBoule(){
     total = 0
     for(let i=0;i<6;i++){
@@ -215,7 +231,9 @@ function calculBoule(){
     }
     return;
 }
-
+//****************************************************************************************************************/
+//              fonction qui calcule la solution, et les fausses solutions (dans les rectangles)                  /
+//****************************************************************************************************************/
 function calculSolutions(){
     let i = Math.floor(Math.random()*3);
     let signe = +1;
@@ -235,19 +253,26 @@ function calculSolutions(){
     console.log(solutions);
     return;
 }
-
+//****************************************************************************************************************/
+//                              affichage des nombres dans les rectangles solutions                               /
+//****************************************************************************************************************/
 function solutionsDisplay(container){
     for(let i=0;i<3;i++){
         container[i+6].montext.text=solutions[i];
     }
 }
+//****************************************************************************************************************/
+//                                      affichage des nombres dans les boules                                     /
+//****************************************************************************************************************/
 function boulesDisplay(container){
     for(let i=0;i<6;i++){
         container[i].montext.text=bouleArray[i];
         container[i].montext.color="#FFFFFF";
     }
 }
-
+//****************************************************************************************************************/
+//                        fonction qui se charge de l'affichage du résultat (gagné/perdu)                         /
+//****************************************************************************************************************/
 function rectResultDisplay(){
     let container = new createjs.Container();
     let rectRes = new createjs.Shape();
@@ -266,6 +291,9 @@ function rectResultDisplay(){
     stage.addChild(container);
     return
 }
+//****************************************************************************************************************/
+//                      animation des boules qui sortent de l'ecran après choix de solution                       /
+//****************************************************************************************************************/
 function animSolu() {
     if(compteur<6){
         let depla = containerArray[compteur].y;
@@ -282,6 +310,9 @@ function animSolu() {
         }
     }
 }
+//***************************************************************************************************************/
+//                          positionnement des boules alignées en horizontal et vertical                         /
+//***************************************************************************************************************/
 function calculPosition() {
     shapeDescriptionArray[0].x=100;
     shapeDescriptionArray[0].y=205;
@@ -294,6 +325,9 @@ function calculPosition() {
         }
     }
 }
+//***************************************************************************************************************/
+//              positionnement des boules en position aléatoire totale sans supperposition de celles-ci          /
+//***************************************************************************************************************/
 function randomPosition(data) {
     data[0].x=(Math.floor(Math.random()*390))+30;
     data[0].y=(Math.floor(Math.random()*215))+205;
@@ -322,6 +356,9 @@ function randomPosition(data) {
     }
     
 }
+//**************************************************************************************************************/
+//         positionnement des boules avec un léger décallage aléatoire par rapport à des boules alignées        /
+//**************************************************************************************************************/
 function falseRandomPos(data) {
     for(let i=0;i<6;i++){
         let depx=Math.floor(Math.random()*80);

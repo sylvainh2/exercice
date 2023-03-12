@@ -22,6 +22,8 @@ let resultShape=[];
 let resultText="";
 let gagne=false;
 
+window.addEventListener('load', init);
+
 export default function init() {
 
     let dataSprite ={
@@ -39,7 +41,9 @@ export default function init() {
         },
         framerate:5
     };
-    
+//*****************************************************************************************************************/
+//                                              création des zombies                                               /
+//*****************************************************************************************************************/
     for(let i=0;i<6;i++){
         spriteSheet[i] = new createjs.SpriteSheet(dataSprite);
         animation[i] = new createjs.Sprite(spriteSheet[i],"stand");
@@ -56,15 +60,21 @@ export default function init() {
     animation[randj1].role="joueur 1";
     animation[randj2].role="joueur 2";
     // stage.addChild(spriteSheet);
-
+//****************************************************************************************************************/
+//                                      création des écouteurs d'évènements sur les touches                       /
+//****************************************************************************************************************/
     window.addEventListener("keydown",targetMouve);
     window.addEventListener("keyup",toucheUp);
-
+//****************************************************************************************************************/
+//                                          création des cibles de tir                                            /
+//****************************************************************************************************************/
     targetCont1 = createTarget(150,50,"red");
     targetCont2 = createTarget(850,50,"black");
     containerResult();
     // main();
-
+//****************************************************************************************************************/
+//                          gestion des mouvements des cibles et zombies, ainsi que du tir                        /
+//****************************************************************************************************************/
     createjs.Ticker.timingMode = createjs.Ticker.RAF;
     createjs.Ticker.addEventListener("tick", () => {
     let dep=2;
@@ -176,9 +186,9 @@ export default function init() {
         stage.update();
     });
 }
-
-window.addEventListener('load', init)
-
+//*****************************************************************************************************************/
+//                                          gestion des touches multiples                                          /
+//*****************************************************************************************************************/
 function targetMouve(event){
     let e=event.keyCode;
     // console.log('touche:',e);
@@ -189,6 +199,9 @@ function toucheUp(event){
     let e=event.keyCode;
     touches[e]=false;
 }
+//*****************************************************************************************************************/
+//                                          création des cibles de tir                                             /
+//*****************************************************************************************************************/
 function createTarget(datax,datay,datac){
     let contain = new createjs.Container();
     let target1 = new createjs.Shape();
@@ -207,12 +220,18 @@ function createTarget(datax,datay,datac){
     stage.addChild(contain);
     return (contain);
 }
+//*****************************************************************************************************************/
+//                                      calcul de la distance entre cibles de tir et zombie                        /
+//*****************************************************************************************************************/
 function distance(target,joueur){
     let dx=(target.x)-(joueur.x);
     let dy=(target.y)-(joueur.y);
     let distance = Math.sqrt((dx**2+dy**2));
     return(distance);
 }
+//*****************************************************************************************************************/
+//                              fonction de remise à zero des variables, positions...                              /
+//*****************************************************************************************************************/
 function reset(){
     targetCont1.x=150;
     targetCont1.y=50;
@@ -241,6 +260,9 @@ function reset(){
     gagne=false;
     contResult.visible=false;
 }
+//*****************************************************************************************************************/
+//                                      affichage du résultat de la partie                                         /
+//*****************************************************************************************************************/
 function containerResult() {
     contResult = new createjs.Container();
     resultShape = new createjs.Shape();
@@ -257,6 +279,9 @@ function containerResult() {
     stage.addChild(contResult);
     return
 }
+//*****************************************************************************************************************/
+//                     attente du clic sur le résultat de la partie pour en relancer une autre                     /
+//*****************************************************************************************************************/
 function clicResult(){
     console.log('RESET RESET');
     reset();

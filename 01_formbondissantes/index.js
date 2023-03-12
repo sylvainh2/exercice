@@ -39,7 +39,9 @@ function init() {
         })
 
 }
-
+//*****************************************************************************************************************/
+//                          creation des formes avec création des écouteurs d'évènements                           /
+//*****************************************************************************************************************/
 function formDraw(data){
     let formObj = new createjs.Shape();
     formObj.mouve = false;
@@ -60,12 +62,16 @@ function formDraw(data){
         return (formObj);
     
 }
-
+//*****************************************************************************************************************/
+//                              fonction qui stoppe ou met en mouvement chaque forme                               /
+//*****************************************************************************************************************/
 function handleClick(event) {
     console.log(event.currentTarget);
     event.currentTarget.mouve = !event.currentTarget.mouve;
 }
-
+//*****************************************************************************************************************/
+//                    fonction qui se charge de l'animation des formes et de les faire rebondire                   /
+//*****************************************************************************************************************/
 function animate(){
     animArray.map((data)=>{
         if(data.mouve){
