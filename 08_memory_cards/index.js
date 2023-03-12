@@ -39,6 +39,7 @@ function play(e) {
         let evP = ev.parentNode;
 
         countClickedCards += 1;
+        console.log("count",countClickedCards,evP.clickable);
         if (countClickedCards == 1 && evP.clickable == true) {
             evP.clickable = false;
             // mise en place d'une classe box rot pour la rotation d'une carte face visible 
@@ -72,6 +73,7 @@ function play(e) {
                 }
             } else if (clickedCards[0].nbcard != clickedCards[1].nbcard) {
                 unclickable=true;
+                ev.mouseEnable=true;
                 countClickedCards = 0;
                 clickedCards[1].parentNode.className = "box rot";
                 clickedCards[0].parentNode.className = "box rot";
@@ -80,10 +82,12 @@ function play(e) {
                 clickedCards[1].clickable = true;
             }
             if(!evP.clickable){
+                console.log(evP.clickable,countClickedCards);
                 countClickedCards = 1;
                 clickedCards[1]=[];
             }
         }
+        if(countClickedCards==2 && evP.clickable==false)countClickedCards=1;
     }
 }
 //********************************************************************************************************************/

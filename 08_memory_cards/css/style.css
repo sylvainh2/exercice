@@ -75,10 +75,12 @@ button{
 }
 .card-front{
     background-color: rgb(154, 160, 161);
+    object-fit: contain;
 }
 .card-back{
     background-color: blueviolet;
     transform: rotateY(180deg);
+    object-fit: contain;
 }
 .cont1{
     grid-template-columns: repeat(4,4fr);
